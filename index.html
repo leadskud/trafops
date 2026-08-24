@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Никита Кудрин — диагностика привлечения и органика продуктов</title>
+<meta name="description" content="Нахожу, почему привлечение перестало работать, и чиню найденное. Глубина — в органике продуктов, где страниц тысячи: агрегаторы, классифайды, маркетплейсы, многономенклатурный B2B.">
+<meta name="theme-color" content="#12181f">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:title" content="Нахожу, почему привлечение перестало работать">
+<meta property="og:description" content="Диагностика контура привлечения и проект по найденному. Органика как инженерная система: архитектура, генерация, индексация, краулинговый бюджет.">
+<meta property="og:site_name" content="Никита Кудрин">
+<meta property="og:url" content="https://kudr.in/trafops">
+<link rel="canonical" href="https://kudr.in/trafops">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "name": "Никита Кудрин",
+      "jobTitle": "Диагностика привлечения, органика продуктов",
+      "email": "mailto:nikita@kudr.in"
+    },
+    {
+      "@type": "Service",
+      "name": "Диагностика контура привлечения",
+      "provider": {"@type": "Person", "name": "Никита Кудрин"},
+      "areaServed": "RU",
+      "description": "Разовая диагностика: где именно течёт привлечение — органика, платный трафик, аналитика, атрибуция, техническая часть, обработка заявок. На выходе причина, а не список рекомендаций."
+    }
+  ]
+}
+</script>
+<style>
+:root{
+  --ink:#12181f;
+  --ink-soft:#41505f;
+  --muted:#6a7887;
+  --line:#e2e7ec;
+  --bg:#ffffff;
+  --bg-tint:#f5f7f9;
+  --dark:#12181f;
+  --dark-soft:#9fb0c0;
+  --accent:#1f6feb;
+  --wrap:min(1080px, 100% - 2.5rem);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font:400 17px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Arial,sans-serif;
+  text-rendering:optimizeLegibility;
+}
+.wrap{width:var(--wrap);margin-inline:auto}
+h1,h2,h3{line-height:1.2;letter-spacing:-0.02em;margin:0 0 .6em}
+h1{font-size:clamp(2rem,5.2vw,3.15rem);font-weight:700}
+h2{font-size:clamp(1.5rem,3.4vw,2.1rem);font-weight:650}
+h3{font-size:1.12rem;font-weight:650}
+p{margin:0 0 1em}
+a{color:var(--accent)}
+.eyebrow{
+  font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:1rem;
+}
+.skip-link{position:absolute;left:-9999px}
+.skip-link:focus{left:1rem;top:1rem;background:#fff;padding:.6rem 1rem;z-index:10}
+
+/* header */
+.site-header{border-bottom:1px solid var(--line);background:#fff}
+.nav-wrap{display:flex;align-items:center;gap:1.5rem;min-height:68px;flex-wrap:wrap}
+.brand{display:flex;flex-direction:column;text-decoration:none;color:var(--ink);margin-right:auto}
+.brand strong{font-size:1rem;font-weight:650}
+.brand small{color:var(--muted);font-size:.82rem}
+.nav{display:flex;gap:1.4rem;font-size:.92rem}
+.nav a{color:var(--ink-soft);text-decoration:none}
+.nav a:hover{color:var(--accent)}
+.button{
+  display:inline-block;background:var(--ink);color:#fff;text-decoration:none;
+  padding:.85rem 1.4rem;border-radius:6px;font-weight:600;font-size:.95rem;
+  border:1px solid var(--ink);
+}
+.button:hover{background:#000}
+.button-small{padding:.55rem 1rem;font-size:.88rem}
+.button-ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.45)}
+.button-ghost:hover{background:rgba(255,255,255,.1)}
+
+/* sections */
+section{padding:clamp(3rem,7vw,5.5rem) 0}
+.section-tint{background:var(--bg-tint);border-block:1px solid var(--line)}
+.section-dark{background:var(--dark);color:#fff}
+.section-dark h2{color:#fff}
+.section-dark p{color:var(--dark-soft)}
+.lede{font-size:clamp(1.05rem,2.1vw,1.28rem);color:var(--ink-soft);max-width:46ch}
+.section-dark .lede{color:var(--dark-soft)}
+
+/* hero */
+.hero{background:var(--dark);color:#fff;padding-top:clamp(3.5rem,8vw,6rem)}
+.hero h1{color:#fff;max-width:20ch}
+.hero .eyebrow{color:#7e93a8}
+.hero-lede{font-size:clamp(1.05rem,2.2vw,1.3rem);color:#c3d0dc;max-width:52ch}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;align-items:center;margin-top:2rem}
+.hero-note{color:#7e93a8;font-size:.95rem;margin-top:1.6rem;max-width:56ch}
+.strip{
+  display:flex;flex-wrap:wrap;gap:.75rem 2.5rem;
+  margin-top:clamp(2.5rem,5vw,3.5rem);padding-top:1.6rem;
+  border-top:1px solid rgba(255,255,255,.14);color:#8fa2b4;font-size:.92rem;
+}
+.strip strong{color:#fff;font-weight:600}
+
+/* steps */
+.steps{display:grid;gap:1.25rem;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));margin-top:2.5rem}
+.step{border:1px solid var(--line);border-radius:8px;padding:1.6rem;background:#fff}
+.step-num{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:30px;height:30px;border-radius:50%;background:var(--ink);color:#fff;
+  font-size:.85rem;font-weight:600;margin-bottom:1rem;
+}
+.step p:last-child{margin-bottom:0}
+.step p{color:var(--ink-soft);font-size:.98rem}
+
+/* table */
+.table-scroll{overflow-x:auto;margin-top:2.5rem;-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;min-width:620px;font-size:.97rem}
+th,td{text-align:left;padding:.95rem 1.1rem;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600}
+td:first-child{font-weight:600;width:48%}
+td:last-child{color:var(--ink-soft)}
+
+/* proof */
+.proof{display:grid;gap:1.25rem;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));margin-top:2.5rem}
+.proof-item{
+  background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.12);
+  border-radius:8px;padding:1.5rem;
+}
+.proof-item h3{color:#fff;margin-bottom:.5rem}
+.proof-item p{margin-bottom:0;font-size:.97rem}
+.proof-note{margin-top:2rem;font-size:.88rem;color:#6f8194;max-width:64ch}
+
+/* fit */
+.fit{display:grid;gap:2.5rem;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));margin-top:2.5rem}
+.fit ul{margin:0;padding:0;list-style:none}
+.fit li{padding:.7rem 0 .7rem 1.6rem;border-bottom:1px solid var(--line);position:relative;color:var(--ink-soft)}
+.fit li::before{position:absolute;left:0;top:.7rem;font-weight:700}
+.fit-yes li::before{content:"+";color:#1a7f4b}
+.fit-no li::before{content:"–";color:#b4433a}
+.fit h3{margin-bottom:.4rem}
+.fit .sub{color:var(--muted);font-size:.9rem;margin-bottom:.6rem}
+
+/* cta */
+.cta{background:var(--bg-tint);border-top:1px solid var(--line)}
+.cta-inner{max-width:62ch}
+.cta ul{padding-left:1.15rem;color:var(--ink-soft);margin:0 0 1.6rem}
+.cta li{margin-bottom:.35rem}
+.cta-actions{display:flex;gap:1rem;flex-wrap:wrap;align-items:center;margin-top:1.6rem}
+.cta-note{color:var(--muted);font-size:.95rem;margin-top:1.4rem}
+
+footer{padding:2.5rem 0;border-top:1px solid var(--line);color:var(--muted);font-size:.88rem}
+.footer-wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+footer a{color:var(--ink-soft)}
+
+@media (max-width:640px){
+  .nav{display:none}
+  .brand{margin-right:auto}
+  /* Таблица «симптом → почему не к агентству» на узком экране превращается
+     в стопку карточек: горизонтальный скролл внутри блока формально работает,
+     но правая колонка — половина смысла, а её при скролле просто не видят. */
+  .table-scroll{overflow-x:visible}
+  table,tbody,tr,td{display:block;width:auto;min-width:0}
+  thead{position:absolute;left:-9999px}
+  tr{border-bottom:1px solid var(--line);padding:1.1rem 0}
+  tr:last-child{border-bottom:0}
+  td{border:0;padding:0}
+  td:first-child{width:auto;margin-bottom:.4rem}
+  td:last-child::before{
+    content:"Почему не к агентству";display:block;
+    font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--muted);margin-bottom:.2rem;
+  }
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#content">К содержанию</a>
+
+<header class="site-header">
+  <div class="wrap nav-wrap">
+    <a class="brand" href="#top">
+      <strong>Никита Кудрин</strong>
+      <small>Диагностика привлечения · органика продуктов</small>
+    </a>
+    <nav class="nav" aria-label="Основная навигация">
+      <a href="#symptoms">С чем приходят</a>
+      <a href="#how">Как работаю</a>
+      <a href="#proof">Чем доказываю</a>
+      <a href="#fit">Кому подхожу</a>
+    </nav>
+    <a class="button button-small" href="#talk">Тридцать минут</a>
+  </div>
+</header>
+
+<main id="content">
+
+  <section class="hero" id="top">
+    <div class="wrap">
+      <p class="eyebrow">Органика · аналитика · атрибуция · техническая часть</p>
+      <h1>Нахожу, почему привлечение перестало работать, и чиню найденное.</h1>
+      <p class="hero-lede">Глубина — в органике продуктов, где страниц тысячи: агрегаторы, классифайды,
+        маркетплейсы, многономенклатурный B2B.</p>
+      <div class="hero-actions">
+        <a class="button button-ghost" href="#talk">Тридцать минут — бесплатно</a>
+        <a class="button button-ghost" href="#symptoms">С чем ко мне приходят</a>
+      </div>
+      <p class="hero-note">Разовая экспертная работа: нашёл, починил, ушёл. Не подряд и не ретейнер.</p>
+      <div class="strip">
+        <span><strong>Разовая</strong> диагностика</span>
+        <span><strong>Проект</strong> по найденному</span>
+        <span><strong>Причина</strong>, а не список рекомендаций</span>
+        <span><strong>20 лет</strong> в органике и разработке</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="symptoms">
+    <div class="wrap">
+      <p class="eyebrow">Симптом, а не диагноз</p>
+      <h2>Покупатель приходит не с диагнозом.</h2>
+      <p class="lede">«Просело», «дорого», «непонятно откуда». Он не знает, что именно сломано, —
+        иначе не звал бы никого.</p>
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr><th scope="col">С чем приходят</th><th scope="col">Почему не к агентству</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Сделали десятки тысяч страниц — в индекс не попадают</td><td>агентство пишет тексты, а не работает с краулинговым бюджетом</td></tr>
+            <tr><td>Органика встала или упала, подрядчик объясняет алгоритмами</td><td>нужен тот, кто проверит подрядчика, а не второй подрядчик</td></tr>
+            <tr><td>Миграция или редизайн уронили трафик</td><td>разовая инженерная задача с дедлайном</td></tr>
+            <tr><td>Надо запустить генерацию страниц и не словить thin content</td><td>редкая компетенция, у большинства агентств её нет</td></tr>
+            <tr><td>Платим за трафик, но откуда сделки — не знаем</td><td>это атрибуция и аналитика, а не реклама</td></tr>
+            <tr><td>Выходим на новые языки и рынки</td><td>архитектура и хосты, а не переводы</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin-top:1.6rem;color:var(--ink-soft);max-width:62ch">
+        Внутри компании зовёт чаще не маркетинг: <strong>продакт или CTO</strong>, когда органика
+        упирается в продукт и разработку; <strong>собственник</strong> в среднем бизнесе;
+        <strong>маркетинг-директор</strong>, у которого есть агентство, но нет результата.</p>
+    </div>
+  </section>
+
+  <section class="section-tint" id="how">
+    <div class="wrap">
+      <p class="eyebrow">Две ступени</p>
+      <h2>Сначала причина. Потом работа по ней.</h2>
+      <p class="lede">Вторая ступень продаётся из первой, а не вместо неё.</p>
+      <div class="steps">
+        <div class="step">
+          <span class="step-num">1</span>
+          <h3>Диагностика контура привлечения</h3>
+          <p>Где течёт: органика, платный трафик, аналитика, атрибуция, техническая часть,
+            обработка заявок. На выходе — причина, а не список рекомендаций.</p>
+        </div>
+        <div class="step">
+          <span class="step-num">2</span>
+          <h3>Проект по найденному</h3>
+          <p>Чаще всего органика: архитектура, генерация страниц, индексация, краулинговый бюджет.
+            Реже — аналитика и атрибуция, инфраструктура, техническая часть.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">Почему широкий вход — преимущество</p>
+      <h2>Три подрядчика подряд сообщают, что виноват четвёртый.</h2>
+      <div style="max-width:62ch;color:var(--ink-soft)">
+        <p>Узкий подрядчик проверяет только свою грядку и отвечает «у меня всё в порядке».
+          Это может длиться кварталами.</p>
+        <p>Человек, который держит одновременно разработку, органику, аналитику, атрибуцию и
+          инфраструктуру, — единственный, кто способен назвать причину, а не отчитаться за свой участок.</p>
+        <p style="margin-bottom:0"><strong style="color:var(--ink)">Чем отличаюсь от SEO-агентства.</strong>
+          Агентство продаёт позиции по семантике, тексты и ссылки. Предмет здесь другой —
+          архитектура, генерация, индексация и краулинговый бюджет: органика как инженерная система,
+          а не как контент-производство. Метрика тоже другая: не объём публикаций, а доля дошедшего
+          до индекса. Практическое следствие — разговор идёт с разработкой, а не только с маркетингом.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-dark" id="proof">
+    <div class="wrap">
+      <p class="eyebrow" style="color:#7e93a8">Чем доказываю</p>
+      <h2>Сделанное, а не описанное.</h2>
+      <p class="lede">Агрегатор недвижимости, 2013–2016, и международный B2B-контур.</p>
+      <div class="proof">
+        <div class="proof-item">
+          <h3>Органика как отдельный управляемый контур</h3>
+          <p>Органический трафик вырос со 184 508 до 541 660 пользователей в месяц за девятнадцать
+            месяцев и продолжал расти после того, как общий трафик площадки прошёл пик, — то есть
+            рос своим контуром, а не вслед за платным.</p>
+        </div>
+        <div class="proof-item">
+          <h3>Программное SEO как система</h3>
+          <p>Сеть из 56 гео-поддоменов на едином генераторе страниц; конструктор из параметров поиска
+            примерно на 10 000 страниц; иерархия район — населённый пункт с порогом качества против
+            thin content: страница района открывается только когда в нём набирается не меньше пяти карточек.</p>
+        </div>
+        <div class="proof-item">
+          <h3>Краулинговый бюджет как измеримая статья</h3>
+          <p>Публикация новых страниц тестировалась как эксперимент на контрольных выборках,
+            а метрикой была доля дошедших до индекса после апдейтов, а не объём публикаций.
+            Для 2016 года это нетипично.</p>
+        </div>
+        <div class="proof-item">
+          <h3>Органика, дотянувшаяся до продукта</h3>
+          <p>У двух третей карточек по Москве не было привязки к станции метро — они не участвовали
+            в выдаче по станциям, хотя конкуренты проставляли метро агрессивнее. После разбора
+            разработка выкатила и запатчила прод на следующий день.</p>
+        </div>
+        <div class="proof-item">
+          <h3>Проверка подрядчика и атрибуции</h3>
+          <p>Найдена утечка, где 20–40% звонков не засчитывались источнику.</p>
+        </div>
+        <div class="proof-item">
+          <h3>Мультиязычная органика</h3>
+          <p>Языковая фабрика: 14 705 страниц в индексе на четырёх языках, международный B2B-контур.</p>
+        </div>
+      </div>
+      <p class="proof-note">Проект обезличен по NDA. Первоисточники по каждому пункту показываю
+        на разговоре — с датами, выгрузками и тем, что именно считалось.</p>
+    </div>
+  </section>
+
+  <section id="fit">
+    <div class="wrap">
+      <p class="eyebrow">Границы</p>
+      <h2>Подхожу не всем, и это экономит время.</h2>
+      <div class="fit">
+        <div>
+          <h3>Подхожу</h3>
+          <p class="sub">Продукты с большим числом сущностей и страниц</p>
+          <ul class="fit-yes">
+            <li>Агрегаторы, классифайды, маркетплейсы, listing-сервисы</li>
+            <li>Многономенклатурный B2B и промышленный e-com</li>
+            <li>SaaS с программными страницами</li>
+            <li>Мультиязычные и мультирегиональные проекты</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Не подхожу</h3>
+          <p class="sub">Здесь нет предмета для моей работы</p>
+          <ul class="fit-no">
+            <li>Сайт-визитка, лендинг, малый локальный бизнес — там органика решается подрядчиком
+              за небольшие деньги, и звать меня переплата</li>
+            <li>Нужны позиции по списку запросов и тексты под них — это работа агентства,
+              и агентство сделает её дешевле</li>
+            <li>Нет доступа к аналитике, логам и разработке — диагностика без данных гадание,
+              а органика продуктов чинится в коде, а не в текстах</li>
+            <li>Нужен исполнитель на постоянные руки — это разовая экспертная работа, а не подряд</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta" id="talk">
+    <div class="wrap cta-inner">
+      <p class="eyebrow">Первый шаг</p>
+      <h2>Тридцать минут.</h2>
+      <p style="color:var(--ink-soft)">Разбираем четыре вещи:</p>
+      <ul>
+        <li>что просело;</li>
+        <li>с какого момента;</li>
+        <li>кто сейчас за это отвечает;</li>
+        <li>что показывает аналитика.</li>
+      </ul>
+      <p style="color:var(--ink-soft)">По итогам говорю, есть ли здесь предмет для диагностики —
+        включая ответ «нет, вам достаточно поменять подрядчика».</p>
+      <div class="cta-actions">
+        <a class="button" href="mailto:nikita@kudr.in?subject=Диагностика%20привлечения&body=Что%20просело%3A%0AС%20какого%20момента%3A%0AКто%20сейчас%20за%20это%20отвечает%3A%0AЧто%20показывает%20аналитика%3A%0AСсылка%20на%20продукт%3A">Написать на почту</a>
+      </div>
+      <p class="cta-note">Разговор бесплатный. Всё, что после него, платное.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap footer-wrap">
+    <span>Никита Кудрин — диагностика привлечения и органика продуктов</span>
+    <span><a href="mailto:nikita@kudr.in">nikita@kudr.in</a></span>
+  </div>
+</footer>
+
+</body>
+</html>
